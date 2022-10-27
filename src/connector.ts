@@ -4,7 +4,7 @@ export const connector = new TonConnect();
 
 connector.autoConnect();
 
-
+(window as any).connector = connector;
 export function connectToTonkeeper(): string {
     const walletConnectionSource = {
         universalLinkBase: 'https://app.tonkeeper.com/',
@@ -35,7 +35,20 @@ export function mockTonConnect() {
     (window as any).tonconnect = {
         listener: undefined,
         autoConnect() {
-          return Promise.resolve({ event: 'connect_error' })
+            return Promise.resolve({
+                event: 'connect', payload: {
+                    items: [{
+                        name: 'ton_addr',
+                        address: 'EQ121e'.repeat(8),
+                        network: '-239'
+                    }],
+                    device: {
+                        platform: 'iphone',
+                        app: 'Tonkeeper',
+                        version: '2.7.1'
+                    }
+                }
+            })
         },
         connect() {
             return Promise.resolve({
