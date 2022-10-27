@@ -1,5 +1,4 @@
 import { TonConnect } from '@tonconnect/sdk';
-import { SendTransactionRequest } from '@tonconnect/sdk/lib/models/methods';
 
 export const connector = new TonConnect();
 
@@ -8,8 +7,8 @@ connector.autoConnect();
 
 export function connectToTonkeeper(): string {
     const walletConnectionSource = {
-        universalLinkBase: '',
-        bridgeUrl: ''
+        universalLinkBase: 'https://tonkeeper.com/connect/', // TODO replace with correct link
+        bridgeUrl: 'https://bridge.tonapi.io/bridge'
     }
 
     return connector.connect(walletConnectionSource);
@@ -19,25 +18,11 @@ export function connectToInjected() {
     connector.connect('injected');
 }
 
-export async function sendTransaction(): Promise<{ boc: string }> {
-    const tx = {
-        valid_until: Date.now() + 1000000,
-        messages: [
-            {
-                address: "0:412410771DA82CBA306A55FA9E0D43C9D245E38133CB58F1457DFB8D5CD8892F",
-                amount: "20000000",
-                initState: "base64bocblahblahblah==" //deploy contract
-            },
-            {
-                address: "0:E69F10CC84877ABF539F83F879291E5CA169451BA7BCE91A37A5CED3AB8080D3",
-                amount: "60000000",
-                payload: "base64bocblahblahblah==" //transfer nft to new deployed account 0:412410771DA82CBA306A55FA9E0D43C9D245E38133CB58F1457DFB8D5CD8892F
-            }
-        ]
-    }
-
+export async function sendTransaction(tx: any): Promise<{ boc: string }> {
     try {
-        return await connector.sendTransaction(tx);
+        const result = await connector.sendTransaction(tx);
+        alert(`Send tx result: ${JSON.stringify(result)}`)
+        return result;
     } catch (e) {
         alert(e);
         throw e;
@@ -68,8 +53,13 @@ export function mockTonConnect() {
                 }
                 })
         },
-        send() {
-
+        // @ts-ignore
+        send(req) {
+            console.log('Request received', req);
+            return Promise.resolve({
+                id: req.id,
+                result: 'mocked_boc'
+            })
         },
         // @ts-ignore
         listen(callback){

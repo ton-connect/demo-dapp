@@ -35,7 +35,7 @@ export function AuthButton() {
             return;
         }
 
-        const universalLink = 'https://google.com' //connectToTonkeeper();
+        const universalLink = connectToTonkeeper();
 
         if (isMobile()) {
             window.location.assign(universalLink);

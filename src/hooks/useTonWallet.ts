@@ -1,4 +1,4 @@
-import { Wallet } from '@tonconnect/sdk/lib/models';
+import { Wallet } from '@tonconnect/sdk';
 import { useEffect, useState } from 'react';
 import { connector } from '../connector';
 

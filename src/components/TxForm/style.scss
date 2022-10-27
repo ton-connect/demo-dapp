@@ -1,0 +1,26 @@
+.send-tx-form {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+
+  h3 {
+    color: white;
+    opacity: 0.8;
+  }
+
+  > div:nth-child(2) {
+    width: 100%;
+
+    span {
+      word-break: break-word;
+    }
+  }
+
+  &__error {
+    color: rgba(102,170,238,0.91);
+    font-size: 18px;
+    line-height: 20px;
+  }
+}
