@@ -7,8 +7,8 @@ connector.autoConnect();
 
 export function connectToTonkeeper(): string {
     const walletConnectionSource = {
-        universalLinkBase: 'https://tonkeeper.com/connect/', // TODO replace with correct link
-        bridgeUrl: 'https://bridge.tonapi.io/bridge'
+        universalLinkBase: 'https://app.tonkeeper.com/',
+        bridgeUrl: 'https://bridge.tonapi.io/bridge/'
     }
 
     return connector.connect(walletConnectionSource);
