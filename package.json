@@ -21,6 +21,7 @@
     "web-vitals": "^2.1.0",
     "react-json-view": "^1.21.3"
   },
+  "homepage": "https://ton-connect.github.io/demo-dapp/",
   "scripts": {
     "start": "react-scripts start",
     "build": "BUILD_PATH='./docs' react-scripts build",
