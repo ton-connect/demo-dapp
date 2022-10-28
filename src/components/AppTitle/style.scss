@@ -1,0 +1,10 @@
+.dapp-title {
+  font-size: 30px;
+  line-height: 34px;
+  color: rgba(102,170,238,0.91);
+  font-weight: bold;
+
+  & + sup {
+    box-shadow: none;
+  }
+}

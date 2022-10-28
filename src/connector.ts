@@ -2,8 +2,6 @@ import { TonConnect } from '@tonconnect/sdk';
 
 export const connector = new TonConnect();
 
-connector.autoConnect();
-
 (window as any).connector = connector;
 export function connectToTonkeeper(): string {
     const walletConnectionSource = {
