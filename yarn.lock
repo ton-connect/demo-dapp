@@ -1830,17 +1830,17 @@
   dependencies:
     "@babel/runtime" "^7.12.5"
 
-"@tonconnect/protocol@^0.0.4":
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/@tonconnect/protocol/-/protocol-0.0.4.tgz#ac0de47f443098c075b6097f923d496cb342d20b"
-  integrity sha512-pXhLa6TPQuLgVnYlo3l1sP3ctnaJeFQ5dSoiu3tR81s2LdYYuC8yPgTQcC51RUjO/387+MaKuo+AfekoM0ro5A==
+"@tonconnect/protocol@^0.0.5":
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/@tonconnect/protocol/-/protocol-0.0.5.tgz#e4e5c1e29c79f4c10f9428e5668f23336f06cfd4"
+  integrity sha512-ZkweDbKah+JNTlMxcS6alQcIzHebNHuoIOZxlE4XR4uBkZ2lgEIJLn4EYRQowUihgIyeTzNo8f1Xgeu0AG1V2g==
 
-"@tonconnect/sdk@^0.0.4":
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/@tonconnect/sdk/-/sdk-0.0.4.tgz#31ac08e4bd016ba44761ae5bf2bb50b28d41480a"
-  integrity sha512-NxPlq5icfCl98C2yXArsoKVlr67KF7L8Di8F7nnjkHrQ8fdUPhwF2bOXVPuyayqeXE6YGvYRaDdCDtDbxHNmpQ==
+"@tonconnect/sdk@^0.0.5":
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/@tonconnect/sdk/-/sdk-0.0.5.tgz#f020b41226c579c59994b28d57939aa249adb3ca"
+  integrity sha512-X10UnmNnuQtqC4PYu63dAYW41zx235OibqKOs5GjNfVXOYP8qbKlg4RYQu6Q5KHEQuK9oYW/s7iZ3OXyZiJyqA==
   dependencies:
-    "@tonconnect/protocol" "^0.0.4"
+    "@tonconnect/protocol" "^0.0.5"
     deepmerge "^4.2.2"
     tweetnacl "^1.0.3"
 

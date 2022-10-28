@@ -1,4 +1,4 @@
-import { CHAIN } from '@tonconnect/protocol';
+import { CHAIN } from '@tonconnect/sdk';
 import React, { useMemo } from 'react';
 import './style.scss';
 import { Badge } from 'antd';
