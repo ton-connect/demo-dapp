@@ -1,7 +1,6 @@
 import { CHAIN } from '@tonconnect/sdk';
-import React, { useMemo } from 'react';
+import React from 'react';
 import './style.scss';
-import { Badge } from 'antd';
 import { useTonWallet } from 'src/hooks/useTonWallet';
 
 const chainNames = {
@@ -10,14 +9,12 @@ const chainNames = {
 }
 
 export function AppTitle() {
-    const offset: [number, number] = useMemo(() => [40, 20], []);
     const wallet = useTonWallet();
 
     return (
-        wallet ?
-            <Badge count={chainNames[wallet.account.chain]} offset={offset}>
-                <span className="dapp-title">My Dapp</span>
-            </Badge> :
-            <span className="dapp-title">My Dapp</span>
+        <div className="dapp-title">
+            <span className="dapp-title__text">My Dapp</span>
+            { wallet && <span className="dapp-title__badge">{ chainNames[wallet.account.chain] }</span> }
+        </div>
     )
 }
