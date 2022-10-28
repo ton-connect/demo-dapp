@@ -1835,10 +1835,10 @@
   resolved "https://registry.yarnpkg.com/@tonconnect/protocol/-/protocol-0.0.5.tgz#e4e5c1e29c79f4c10f9428e5668f23336f06cfd4"
   integrity sha512-ZkweDbKah+JNTlMxcS6alQcIzHebNHuoIOZxlE4XR4uBkZ2lgEIJLn4EYRQowUihgIyeTzNo8f1Xgeu0AG1V2g==
 
-"@tonconnect/sdk@^0.0.5":
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/@tonconnect/sdk/-/sdk-0.0.5.tgz#f020b41226c579c59994b28d57939aa249adb3ca"
-  integrity sha512-X10UnmNnuQtqC4PYu63dAYW41zx235OibqKOs5GjNfVXOYP8qbKlg4RYQu6Q5KHEQuK9oYW/s7iZ3OXyZiJyqA==
+"@tonconnect/sdk@^0.0.6":
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/@tonconnect/sdk/-/sdk-0.0.6.tgz#f99118623cabc77f7b02372fb395c0b96b7f379a"
+  integrity sha512-qKxBeQD6E0oyoSxjZ/z3I/D2PqM8oVd/aa/kfH/AMPqu8IVEQWHuHQMSz8HC0mym2xG6RU8z9pHVP+ZWboHXGw==
   dependencies:
     "@tonconnect/protocol" "^0.0.5"
     deepmerge "^4.2.2"

@@ -1,6 +1,11 @@
 import { TonConnect } from '@tonconnect/sdk';
 
-export const connector = new TonConnect();
+
+// Just to fix Githab pages url problem.
+// If your app main route is hte same as `window.location.origin` you don't have to pass this argument to the TonConnect constructor
+const dappMetadata = { dappMetedata: { url: 'https://ton-connect.github.io/demo-dapp/' }};
+
+export const connector = new TonConnect(dappMetadata);
 
 (window as any).connector = connector;
 export function connectToTonkeeper(): string {
