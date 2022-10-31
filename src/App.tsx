@@ -7,8 +7,6 @@ import { connector } from 'src/connector';
 
 function App() {
     useEffect(() => {
-        console.log('Injected provider is available:', connector.isInjectedProviderAvailable());
-        console.log('window.tonconnect is available:', !!(window as any).tonconnect);
         connector.autoConnect();
     }, []);
 
