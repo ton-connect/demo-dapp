@@ -1837,10 +1837,10 @@
   dependencies:
     buffer "^6.0.3"
 
-"@tonconnect/sdk@^0.0.9":
-  version "0.0.9"
-  resolved "https://registry.yarnpkg.com/@tonconnect/sdk/-/sdk-0.0.9.tgz#6f207f1de5ed30b4970a358228c353a09248f6ae"
-  integrity sha512-VZGB75EuxX8F5dqi9++Q7XoBP3/WvYdh2azCAxWJ26AVkWI7ybIo276ui85WmUVT67T3qFrG62w1vtfXI+Xrbw==
+"@tonconnect/sdk@^0.0.10":
+  version "0.0.10"
+  resolved "https://registry.yarnpkg.com/@tonconnect/sdk/-/sdk-0.0.10.tgz#918c9128bb43663ff66644ffd34100f4038afb40"
+  integrity sha512-m9C38EXFxB+/R9QG6AWJumy9mgyP0QdeZqarbQGuBjlEXP1gud9UIGetpaSCxuGulqmMBf7WilaA/MzXlD9BTQ==
   dependencies:
     "@tonconnect/protocol" "^0.0.6"
     deepmerge "^4.2.2"
