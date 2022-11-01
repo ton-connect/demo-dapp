@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { connector, connectToInjected, connectToTonkeeper, mockTonConnect } from 'src/connector';
 import { useForceUpdate } from 'src/hooks/useForceUpdate';
 import { useSlicedAddress } from 'src/hooks/useSlicedAddress';
@@ -28,6 +28,12 @@ export function AuthButton() {
     const wallet = useTonWallet();
 
     const address = useSlicedAddress(wallet?.account.address);
+
+    useEffect(() => {
+        if (modalUniversalLink && wallet) {
+            setModalUniversalLink('');
+        }
+    }, [modalUniversalLink, wallet])
 
     const handleButtonClick = useCallback(() => {
         if (connector.isInjectedProviderAvailable()) {
@@ -60,7 +66,6 @@ export function AuthButton() {
                         Connect Wallet { isWalletInjected ? '(Injected)' : '' }
                     </Button>
                 }
-                { !isWalletInjected && <Button type="link" onClick={() => {mockTonConnect(); forceUpdate()}}>Mock injected wallet</Button>}
             </div>
             <Modal title="Connect to Tonkeeper" open={!!modalUniversalLink} onOk={() => setModalUniversalLink('')} onCancel={() => setModalUniversalLink('')}>
                 <QRCode
