@@ -1,4 +1,5 @@
 import { TonConnect } from '@tonconnect/sdk';
+import { notification } from 'antd';
 
 
 // Just to fix Githab pages url problem.
@@ -24,10 +25,20 @@ export function connectToInjected() {
 export async function sendTransaction(tx: any): Promise<{ boc: string }> {
     try {
         const result = await connector.sendTransaction(tx);
-        alert(`Send tx result: ${JSON.stringify(result)}`)
+        notification.success({
+            message: 'Successful transaction',
+            description:
+                'You transaction was successfully sent. Please wait until the transaction is included to the TON blockchain.',
+            duration: 5,
+        });
+        console.log(`Send tx result: ${JSON.stringify(result)}`)
         return result;
     } catch (e) {
-        alert(e);
+        notification.error({
+            message: 'Send transaction error',
+            description: ''
+        });
+        console.log(e);
         throw e;
     }
 }
