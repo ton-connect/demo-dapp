@@ -3,8 +3,9 @@ import { connector, connectToInjected, connectToTonkeeper, mockTonConnect } from
 import { useForceUpdate } from 'src/hooks/useForceUpdate';
 import { useSlicedAddress } from 'src/hooks/useSlicedAddress';
 import { useTonWallet } from 'src/hooks/useTonWallet';
-import { Button, Dropdown, Menu, Modal, Space } from 'antd';
+import { Button, Dropdown, Menu, Modal, notification, Space } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
+import { useTonWalletConnectionError } from 'src/hooks/useTonWalletConnectionError';
 import { isMobile } from 'src/utils';
 import QRCode from "react-qr-code";
 import './style.scss';
@@ -26,6 +27,14 @@ export function AuthButton() {
     const forceUpdate = useForceUpdate();
     const isWalletInjected = connector.isInjectedProviderAvailable();
     const wallet = useTonWallet();
+    const onConnectErrorCallback = useCallback(() => {
+        setModalUniversalLink('');
+        notification.error({
+            message: 'Connection was rejected',
+            description: 'Please approve connection to the dApp in your wallet.'
+        });
+    }, []);
+    useTonWalletConnectionError(onConnectErrorCallback);
 
     const address = useSlicedAddress(wallet?.account.address);
 
