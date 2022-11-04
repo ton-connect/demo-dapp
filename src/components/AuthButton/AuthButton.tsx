@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { connector, connectToInjected, connectToTonkeeper, mockTonConnect } from 'src/connector';
+import { connector, connectToInjected, connectToTonkeeper } from 'src/connector';
 import { useForceUpdate } from 'src/hooks/useForceUpdate';
 import { useSlicedAddress } from 'src/hooks/useSlicedAddress';
 import { useTonWallet } from 'src/hooks/useTonWallet';

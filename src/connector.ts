@@ -1,4 +1,4 @@
-import { TonConnect } from '@tonconnect/sdk';
+import { TonConnect, UserRejectsError } from '@tonconnect/sdk';
 import { notification } from 'antd';
 
 
@@ -34,65 +34,19 @@ export async function sendTransaction(tx: any): Promise<{ boc: string }> {
         console.log(`Send tx result: ${JSON.stringify(result)}`)
         return result;
     } catch (e) {
+        let message = 'Send transaction error';
+        let description = '';
+
+        if (typeof e === 'object' && e instanceof UserRejectsError) {
+            message = 'You rejected the transaction'
+            description = 'Please try again and confirm transaction in your wallet.'
+        }
+
         notification.error({
-            message: 'Send transaction error',
-            description: ''
+            message,
+            description
         });
         console.log(e);
         throw e;
     }
-}
-
-(window as any).mockTonConnect = mockTonConnect;
-
-export function mockTonConnect() {
-    (window as any).tonconnect = {
-        listener: undefined,
-        autoConnect() {
-            return Promise.resolve({
-                event: 'connect', payload: {
-                    items: [{
-                        name: 'ton_addr',
-                        address: 'EQ121e'.repeat(8),
-                        network: '-239'
-                    }],
-                    device: {
-                        platform: 'iphone',
-                        app: 'Tonkeeper',
-                        version: '2.7.1'
-                    }
-                }
-            })
-        },
-        connect() {
-            return Promise.resolve({
-                    event: 'connect', payload: {
-                    items: [{
-                        name: 'ton_addr',
-                        address: 'abcdef12'.repeat(8),
-                        network: '-239'
-                    }],
-                    device: {
-                        platform: 'iphone',
-                        app: 'Tonkeeper',
-                        version: '2.7.1'
-                    }
-                }
-                })
-        },
-        // @ts-ignore
-        send(req) {
-            console.log('Request received', req);
-            return Promise.resolve({
-                id: req.id,
-                result: 'mocked_boc'
-            })
-        },
-        // @ts-ignore
-        listen(callback){
-            this.listener = callback;
-            return () => {};
-        }
-    }
-
 }
