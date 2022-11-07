@@ -1,4 +1,5 @@
-import { TonConnect, UserRejectsError } from '@tonconnect/sdk';
+import { TonConnect, UserRejectsError, HTTPBridgeWalletConfig } from '@tonconnect/sdk';
+import { WalletConnectionSourceHTTP } from '@tonconnect/sdk/lib/models/wallet/wallet-connection-source';
 import { notification } from 'antd';
 
 
@@ -9,17 +10,11 @@ const dappMetadata = { dappMetedata: { url: 'https://ton-connect.github.io/demo-
 export const connector = new TonConnect(dappMetadata);
 
 (window as any).connector = connector;
-export function connectToTonkeeper(): string {
-    const walletConnectionSource = {
-        universalLinkBase: 'https://app.tonkeeper.com/',
-        bridgeUrl: 'https://bridge.tonapi.io/bridge/'
-    }
-
-    return connector.connect(walletConnectionSource);
-}
-
-export function connectToInjected() {
-    connector.connect('injected');
+export function connectToWallet(connectionSource: WalletConnectionSourceHTTP): string {
+    return connector.connect({
+        universalLinkBase: connectionSource.universalLinkBase,
+        bridgeUrl: connectionSource.bridgeUrl
+    });
 }
 
 export async function sendTransaction(tx: any): Promise<{ boc: string }> {
@@ -49,4 +44,63 @@ export async function sendTransaction(tx: any): Promise<{ boc: string }> {
         console.log(e);
         throw e;
     }
+}
+
+(window as any).mockTonConnect = mockTonConnect;
+//mockTonConnect();
+
+export function mockTonConnect() {
+    (window as any).tonkeeper = {
+        tonconnect: {
+            listener: undefined,
+            isWalletBrowser: true,
+            restoreConnection() {
+                return Promise.resolve({
+                    event: 'connect', payload: {
+                        items: [{
+                            name: 'ton_addr',
+                            address: 'EQ121e'.repeat(8),
+                            network: '-239'
+                        }],
+                        device: {
+                            platform: 'iphone',
+                            app: 'Tonkeeper',
+                            version: '2.7.1'
+                        }
+                    }
+                })
+            },
+            connect() {
+                return Promise.resolve({
+                    event: 'connect', payload: {
+                        items: [{
+                            name: 'ton_addr',
+                            address: 'abcdef12'.repeat(8),
+                            network: '-239'
+                        }],
+                        device: {
+                            platform: 'iphone',
+                            app: 'Tonkeeper',
+                            version: '2.7.1'
+                        }
+                    }
+                })
+            },
+            // @ts-ignore
+            send(req) {
+                console.log('Request received', req);
+                return Promise.resolve({
+                    id: req.id,
+                    result: 'mocked_boc'
+                })
+            },
+            // @ts-ignore
+            listen(callback) {
+                this.listener = callback;
+                return () => {
+                };
+            }
+        }
+    }
+
 }

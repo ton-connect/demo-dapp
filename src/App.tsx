@@ -6,8 +6,9 @@ import { TxForm } from 'src/components/TxForm/TxForm';
 import { connector } from 'src/connector';
 
 function App() {
+
     useEffect(() => {
-        connector.autoConnect();
+        connector.restoreConnection();
     }, []);
 
   return (

@@ -1,11 +1,13 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { connector, connectToInjected, connectToTonkeeper } from 'src/connector';
+import { useRecoilValueLoadable } from 'recoil';
+import { connector, connectToWallet } from 'src/connector';
 import { useForceUpdate } from 'src/hooks/useForceUpdate';
 import { useSlicedAddress } from 'src/hooks/useSlicedAddress';
 import { useTonWallet } from 'src/hooks/useTonWallet';
 import { Button, Dropdown, Menu, Modal, notification, Space } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 import { useTonWalletConnectionError } from 'src/hooks/useTonWalletConnectionError';
+import { walletsListQuery } from 'src/state/wallets-list';
 import { isMobile } from 'src/utils';
 import QRCode from "react-qr-code";
 import './style.scss';
@@ -25,7 +27,6 @@ const menu = (
 export function AuthButton() {
     const [modalUniversalLink, setModalUniversalLink] = useState('');
     const forceUpdate = useForceUpdate();
-    const isWalletInjected = connector.isInjectedProviderAvailable();
     const wallet = useTonWallet();
     const onConnectErrorCallback = useCallback(() => {
         setModalUniversalLink('');
@@ -36,6 +37,8 @@ export function AuthButton() {
     }, []);
     useTonWalletConnectionError(onConnectErrorCallback);
 
+    const walletsList = useRecoilValueLoadable(walletsListQuery);
+
     const address = useSlicedAddress(wallet?.account.address);
 
     useEffect(() => {
@@ -44,20 +47,27 @@ export function AuthButton() {
         }
     }, [modalUniversalLink, wallet])
 
-    const handleButtonClick = useCallback(() => {
-        if (connector.isInjectedProviderAvailable()) {
-            connectToInjected();
+    const handleButtonClick = useCallback(async () => {
+        // Use loading screen/UI instead (while wallets list is loading)
+        if (!(walletsList.state === 'hasValue')) {
+            setTimeout(handleButtonClick, 200);
+        }
+
+        if (walletsList.contents.inWhichWalletBrowser) {
+            connector.connect(walletsList.contents.inWhichWalletBrowser);
             return;
         }
 
-        const universalLink = connectToTonkeeper();
+        const tonkeeperConnectionSource = walletsList.contents.all[0];
+
+        const universalLink = connectToWallet(tonkeeperConnectionSource);
 
         if (isMobile()) {
             window.location.assign(universalLink);
         } else {
             setModalUniversalLink(universalLink);
         }
-    }, []);
+    }, [walletsList]);
 
     return (
         <>
@@ -72,7 +82,7 @@ export function AuthButton() {
                         </Button>
                     </Dropdown> :
                     <Button shape="round" type="primary" onClick={handleButtonClick}>
-                        Connect Wallet { isWalletInjected ? '(Injected)' : '' }
+                        Connect Wallet
                     </Button>
                 }
             </div>

@@ -1837,10 +1837,10 @@
   dependencies:
     buffer "^6.0.3"
 
-"@tonconnect/sdk@^0.0.13":
-  version "0.0.13"
-  resolved "https://registry.yarnpkg.com/@tonconnect/sdk/-/sdk-0.0.13.tgz#e4351c5ca4767edce19a985f9fdccdac6f0c6578"
-  integrity sha512-HNY2/GtZExRkg6tVsMa/8buO03aqldYGRc4nbufSV1eYwTHrx/T+Rhq/vVWpHkRxU0WWy7vADGEwtuOn4JmoTw==
+"@tonconnect/sdk@^0.0.14":
+  version "0.0.14"
+  resolved "https://registry.yarnpkg.com/@tonconnect/sdk/-/sdk-0.0.14.tgz#e7cccef777962a48298131caaf888ce70218a4f6"
+  integrity sha512-Yz0dQifI45amo9QaBLejnfTWJgV3srbSe6aRLamJf/6jwGexB37loVbEP2sqzgTsCFLNdZ6EBUIWNP3RdeN4vQ==
   dependencies:
     "@tonconnect/protocol" "^0.0.6"
     deepmerge "^4.2.2"
@@ -4877,6 +4877,11 @@ gzip-size@^6.0.0:
   integrity sha512-ax7ZYomf6jqPTQ4+XCpUGyXKHk5WweS+e05MBO4/y3WJ5RkmPXNKvX+bx1behVILVwr6JSQvZAku021CHPXG3Q==
   dependencies:
     duplexer "^0.1.2"
+
+hamt_plus@1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/hamt_plus/-/hamt_plus-1.0.2.tgz#e21c252968c7e33b20f6a1b094cd85787a265601"
+  integrity sha512-t2JXKaehnMb9paaYA7J0BX8QQAY8lwfQ9Gjf4pg/mk4krt+cmwmU652HOoWonf+7+EQV97ARPMhhVgU1ra2GhA==
 
 handle-thing@^2.0.0:
   version "2.0.1"
@@ -8195,6 +8200,13 @@ readdirp@~3.6.0:
   integrity sha512-hOS089on8RduqdbhvQ5Z37A0ESjsqz6qnRcffsMU3495FuTdqSm+7bhJ29JvIOsBDEEnan5DPu9t3To9VRlMzA==
   dependencies:
     picomatch "^2.2.1"
+
+recoil@^0.7.6:
+  version "0.7.6"
+  resolved "https://registry.yarnpkg.com/recoil/-/recoil-0.7.6.tgz#75297ecd70bbfeeb72e861aa6141a86bb6dfcd5e"
+  integrity sha512-hsBEw7jFdpBCY/tu2GweiyaqHKxVj6EqF2/SfrglbKvJHhpN57SANWvPW+gE90i3Awi+A5gssOd3u+vWlT+g7g==
+  dependencies:
+    hamt_plus "1.0.2"
 
 recursive-readdir@^2.2.2:
   version "2.2.3"
