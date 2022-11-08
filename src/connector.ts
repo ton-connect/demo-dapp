@@ -1,5 +1,4 @@
-import { TonConnect, UserRejectsError, HTTPBridgeWalletConfig } from '@tonconnect/sdk';
-import { WalletConnectionSourceHTTP } from '@tonconnect/sdk/lib/models/wallet/wallet-connection-source';
+import { TonConnect, UserRejectsError } from '@tonconnect/sdk';
 import { notification } from 'antd';
 
 
@@ -8,14 +7,6 @@ import { notification } from 'antd';
 const dappMetadata = { dappMetedata: { url: 'https://ton-connect.github.io/demo-dapp/' }};
 
 export const connector = new TonConnect(dappMetadata);
-
-(window as any).connector = connector;
-export function connectToWallet(connectionSource: WalletConnectionSourceHTTP): string {
-    return connector.connect({
-        universalLinkBase: connectionSource.universalLinkBase,
-        bridgeUrl: connectionSource.bridgeUrl
-    });
-}
 
 export async function sendTransaction(tx: any): Promise<{ boc: string }> {
     try {
@@ -54,12 +45,13 @@ export function mockTonConnect() {
         tonconnect: {
             listener: undefined,
             isWalletBrowser: true,
+            disconnect() {},
             restoreConnection() {
                 return Promise.resolve({
                     event: 'connect', payload: {
                         items: [{
                             name: 'ton_addr',
-                            address: 'EQ121e'.repeat(8),
+                            address: '0:412410771DA82CBA306A55FA9E0D43C9D245E38133CB58F1457DFB8D5CD8892F',
                             network: '-239'
                         }],
                         device: {
@@ -75,7 +67,7 @@ export function mockTonConnect() {
                     event: 'connect', payload: {
                         items: [{
                             name: 'ton_addr',
-                            address: 'abcdef12'.repeat(8),
+                            address: '0:412410771DA82CBA306A55FA9E0D43C9D245E38133CB58F1457DFB8D5CD8892F',
                             network: '-239'
                         }],
                         device: {

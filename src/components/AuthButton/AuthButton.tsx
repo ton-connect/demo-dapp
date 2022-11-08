@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useRecoilValueLoadable } from 'recoil';
-import { connector, connectToWallet } from 'src/connector';
+import { connector } from 'src/connector';
 import { useForceUpdate } from 'src/hooks/useForceUpdate';
 import { useSlicedAddress } from 'src/hooks/useSlicedAddress';
 import { useTonWallet } from 'src/hooks/useTonWallet';
@@ -9,7 +9,7 @@ import { DownOutlined } from '@ant-design/icons';
 import { useTonWalletConnectionError } from 'src/hooks/useTonWalletConnectionError';
 import { walletsListQuery } from 'src/state/wallets-list';
 import { isMobile } from 'src/utils';
-import QRCode from "react-qr-code";
+import QRCode from 'react-qr-code';
 import './style.scss';
 
 const menu = (
@@ -53,14 +53,17 @@ export function AuthButton() {
             setTimeout(handleButtonClick, 200);
         }
 
-        if (walletsList.contents.inWhichWalletBrowser) {
-            connector.connect(walletsList.contents.inWhichWalletBrowser);
+        if (walletsList.contents.embeddedWallet) {
+            connector.connect({ jsBridgeKey:  walletsList.contents.embeddedWallet.jsBridgeKey});
             return;
         }
 
-        const tonkeeperConnectionSource = walletsList.contents.all[0];
+        const tonkeeperConnectionSource = {
+            universalLink: walletsList.contents.walletsList[0].universalLink,
+            bridgeUrl: walletsList.contents.walletsList[0].bridgeUrl
+        };
 
-        const universalLink = connectToWallet(tonkeeperConnectionSource);
+        const universalLink = connector.connect(tonkeeperConnectionSource);
 
         if (isMobile()) {
             window.location.assign(universalLink);
