@@ -1924,8 +1924,10 @@
   dependencies:
     buffer "^6.0.3"
 
-"@tonconnect/sdk@file:../../ton-connect/sdk/packages/sdk":
+"@tonconnect/sdk@^0.0.17":
   version "0.0.17"
+  resolved "https://registry.yarnpkg.com/@tonconnect/sdk/-/sdk-0.0.17.tgz#de96566093b455ca0e6935b6939baa1b0f01012a"
+  integrity sha512-c0p+FXehihWGZWJTDYbyTHRNsYaz3tz1tyC8TESAyjnX7SARFjGu+YQVxW1aEuctCEwU6/HNpQ6L9MmlNa80XQ==
   dependencies:
     "@tonconnect/protocol" "^0.0.8"
     deepmerge "^4.2.2"

@@ -37,8 +37,10 @@ export async function sendTransaction(tx: any): Promise<{ boc: string }> {
     }
 }
 
+
+/*
 (window as any).mockTonConnect = mockTonConnect;
-//mockTonConnect();
+mockTonConnect();
 
 export function mockTonConnect() {
     (window as any).tonkeeper = {
@@ -96,3 +98,4 @@ export function mockTonConnect() {
     }
 
 }
+*/

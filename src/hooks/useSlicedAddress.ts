@@ -8,7 +8,7 @@ export function useSlicedAddress(address: string | null | undefined) {
         }
 
         // use any library to convert address from 0:<hex> format to user-friendly format
-        const userFriendlyAddress = new TonWeb.Address(address).toString(true, true, false);
+        const userFriendlyAddress = new TonWeb.Address(address).toString(true, true, true);
 
         return userFriendlyAddress.slice(0,4) + '...' + userFriendlyAddress.slice(-3)
     }, [address]);
