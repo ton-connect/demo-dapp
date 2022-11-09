@@ -45,16 +45,21 @@ export function AuthButton() {
         if (modalUniversalLink && wallet) {
             setModalUniversalLink('');
         }
-    }, [modalUniversalLink, wallet])
+    }, [modalUniversalLink, wallet]);
+
+    // log ton_proof. TODO send to the server
+    useEffect(() => console.log(wallet), [wallet]);
 
     const handleButtonClick = useCallback(async () => {
+        const testTonProofPayload = 'test_ton_proof 123';
+
         // Use loading screen/UI instead (while wallets list is loading)
         if (!(walletsList.state === 'hasValue')) {
             setTimeout(handleButtonClick, 200);
         }
 
         if (walletsList.contents.embeddedWallet) {
-            connector.connect({ jsBridgeKey:  walletsList.contents.embeddedWallet.jsBridgeKey});
+            connector.connect({ jsBridgeKey:  walletsList.contents.embeddedWallet.jsBridgeKey}, {tonProof: testTonProofPayload});
             return;
         }
 
@@ -63,7 +68,7 @@ export function AuthButton() {
             bridgeUrl: walletsList.contents.walletsList[0].bridgeUrl
         };
 
-        const universalLink = connector.connect(tonkeeperConnectionSource);
+        const universalLink = connector.connect(tonkeeperConnectionSource, {tonProof: testTonProofPayload});
 
         if (isMobile()) {
             window.location.assign(universalLink);

@@ -38,9 +38,8 @@ export async function sendTransaction(tx: any): Promise<{ boc: string }> {
 }
 
 
-/*
 (window as any).mockTonConnect = mockTonConnect;
-mockTonConnect();
+//mockTonConnect();
 
 export function mockTonConnect() {
     (window as any).tonkeeper = {
@@ -55,7 +54,20 @@ export function mockTonConnect() {
                             name: 'ton_addr',
                             address: '0:412410771DA82CBA306A55FA9E0D43C9D245E38133CB58F1457DFB8D5CD8892F',
                             network: '-239'
-                        }],
+                        },
+                        {
+                            name: 'ton_proof',
+                            proof: {
+                                timestamp: Math.round(Date.now() / 1000),
+                                domain: {
+                                    lengthBytes: 15,
+                                    value: 'toncoolswap.com'
+                                },
+                                payload: 'test_ton_proof 123',
+                                signature: '0x'+ '1234'.repeat(64)
+                            }
+                        }
+                        ],
                         device: {
                             platform: 'iphone',
                             app: 'Tonkeeper',
@@ -98,4 +110,3 @@ export function mockTonConnect() {
     }
 
 }
-*/
