@@ -28,7 +28,7 @@
     "css-minimizer-webpack-plugin": "^3.2.0",
     "dotenv": "^10.0.0",
     "dotenv-expand": "^5.1.0",
-    "eslint": "^8.3.0",
+    "eslint": "^8.0.1",
     "eslint-config-react-app": "^7.0.1",
     "eslint-webpack-plugin": "^3.1.1",
     "file-loader": "^6.2.0",
@@ -63,19 +63,28 @@
     "tailwindcss": "^3.0.2",
     "terser-webpack-plugin": "^5.2.5",
     "tonweb": "^0.0.58",
-    "typescript": "^4.4.2",
+    "typescript": "*",
     "web-vitals": "^2.1.0",
     "webpack": "^5.64.4",
     "webpack-dev-server": "^4.6.0",
     "webpack-manifest-plugin": "^4.0.2",
     "workbox-webpack-plugin": "^6.4.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^3.4.0",
+    "@typescript-eslint/eslint-plugin": "^5.43.0",
+    "@typescript-eslint/parser": "^5.43.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.31.10",
+    "prettier": "^2.7.1"
+  },
   "homepage": "https://ton-connect.github.io/demo-dapp/",
   "scripts": {
     "start": "node scripts/start.js",
     "build": "BUILD_PATH='./docs' node scripts/build.js",
-    "test": "node scripts/test.js"
+    "test": "node scripts/test.js",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "eslintConfig": {
     "extends": [

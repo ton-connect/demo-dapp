@@ -1,3 +1,3 @@
 export function isMobile(): boolean {
-    return window.innerWidth <= 500;
+	return window.innerWidth <= 500;
 }
