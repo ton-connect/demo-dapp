@@ -15,12 +15,15 @@ class TonProofDemoApiService {
 		connector.onStatusChange((wallet) => {
 			if (!wallet) {
 				this.reset();
+				return;
 			}
 
-			const tonProof = wallet?.connectItems?.tonProof;
+			const tonProof = wallet.connectItems?.tonProof;
 
 			if (tonProof) {
 				this.checkProof(tonProof, wallet.account);
+			} else if (!this.accessToken) {
+				connector.disconnect();
 			}
 		});
 	}

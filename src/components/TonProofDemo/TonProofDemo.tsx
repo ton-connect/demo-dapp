@@ -26,10 +26,10 @@ export function TonProofDemo() {
 
 	return (
 		<div className="ton-proof-demo">
-			<Title level={3}>Demo backend with ton_proof verification</Title>
+			<Title level={3}>Demo backend API with ton_proof verification</Title>
 			{wallet ? (
 				<Button type="primary" shape="round" onClick={handleClick}>
-					Call TonProofDemoApi.getAccountInfo()
+					Call backend getAccountInfo()
 				</Button>
 			) : (
 				<div className="ton-proof-demo__error">Connect wallet to call API</div>
