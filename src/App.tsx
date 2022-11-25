@@ -4,7 +4,6 @@ import { AuthButton } from 'src/components/AuthButton/AuthButton';
 import { TxForm } from 'src/components/TxForm/TxForm';
 import { connector } from 'src/connector';
 import './app.scss';
-import { TonProofDemo } from './components/TonProofDemo/TonProofDemo';
 
 function App() {
 	useEffect(() => {
@@ -19,7 +18,6 @@ function App() {
 			</header>
 			<main>
 				<TxForm />
-				<TonProofDemo />
 			</main>
 		</div>
 	);

@@ -9,7 +9,6 @@ import { useSlicedAddress } from 'src/hooks/useSlicedAddress';
 import { useTonWallet } from 'src/hooks/useTonWallet';
 import { useTonWalletConnectionError } from 'src/hooks/useTonWalletConnectionError';
 import { walletsListQuery } from 'src/state/wallets-list';
-import { TonProofDemoApi } from 'src/TonProofDemoApi';
 import { isMobile } from 'src/utils';
 import './style.scss';
 
@@ -49,18 +48,13 @@ export function AuthButton() {
 	}, [modalUniversalLink, wallet]);
 
 	const handleButtonClick = useCallback(async () => {
-		const testTonProofPayload = await TonProofDemoApi.generatePayload();
-
 		// Use loading screen/UI instead (while wallets list is loading)
 		if (!(walletsList.state === 'hasValue')) {
 			setTimeout(handleButtonClick, 200);
 		}
 
 		if (walletsList.contents.embeddedWallet) {
-			connector.connect(
-				{ jsBridgeKey: walletsList.contents.embeddedWallet.jsBridgeKey },
-				{ tonProof: testTonProofPayload },
-			);
+			connector.connect({ jsBridgeKey: walletsList.contents.embeddedWallet.jsBridgeKey });
 			return;
 		}
 
@@ -69,9 +63,7 @@ export function AuthButton() {
 			bridgeUrl: walletsList.contents.walletsList[0].bridgeUrl,
 		};
 
-		const universalLink = connector.connect(tonkeeperConnectionSource, {
-			tonProof: testTonProofPayload,
-		});
+		const universalLink = connector.connect(tonkeeperConnectionSource);
 
 		if (isMobile()) {
 			window.location.assign(universalLink);
