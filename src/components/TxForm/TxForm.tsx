@@ -1,8 +1,10 @@
 import { Button, Typography } from 'antd';
 import React, { useCallback, useState } from 'react';
 import ReactJson from 'react-json-view';
+import { useRecoilValueLoadable } from 'recoil';
 import { sendTransaction } from 'src/connector';
 import { useTonWallet } from 'src/hooks/useTonWallet';
+import { walletsListQuery } from 'src/state/wallets-list';
 import './style.scss';
 
 const { Title } = Typography;
@@ -24,6 +26,7 @@ const defaultTx = {
 export function TxForm() {
 	const [tx, setTx] = useState(defaultTx);
 	const wallet = useTonWallet();
+	const walletsList = useRecoilValueLoadable(walletsListQuery);
 
 	const onChange = useCallback((value: object) => setTx((value as { updated_src: typeof defaultTx }).updated_src), []);
 
@@ -32,7 +35,7 @@ export function TxForm() {
 			<Title level={3}>Configure and send transaction</Title>
 			<ReactJson src={defaultTx} theme="ocean" onEdit={onChange} onAdd={onChange} onDelete={onChange} />
 			{wallet ? (
-				<Button type="primary" shape="round" onClick={() => sendTransaction(tx)}>
+				<Button type="primary" shape="round" onClick={() => sendTransaction(tx, walletsList.contents.walletsList[0])}>
 					Send transaction
 				</Button>
 			) : (
