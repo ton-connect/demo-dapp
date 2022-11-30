@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import TonWeb from 'tonweb';
+import { Address } from 'ton';
 
 export function useSlicedAddress(address: string | null | undefined) {
 	return useMemo(() => {
@@ -8,7 +8,7 @@ export function useSlicedAddress(address: string | null | undefined) {
 		}
 
 		// use any library to convert address from 0:<hex> format to user-friendly format
-		const userFriendlyAddress = new TonWeb.Address(address).toString(true, true, true);
+		const userFriendlyAddress = Address.parseRaw(address).toFriendly();
 
 		return userFriendlyAddress.slice(0, 4) + '...' + userFriendlyAddress.slice(-3);
 	}, [address]);
