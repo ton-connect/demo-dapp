@@ -1,6 +1,5 @@
 import { SendTransactionRequest, TonConnect, UserRejectsError, WalletInfo } from '@tonconnect/sdk';
 import { notification } from 'antd';
-import { generateInitialData } from 'src/nft-transaction';
 import { isMobile } from 'src/utils';
 
 // Just to fix Githab pages url problem.

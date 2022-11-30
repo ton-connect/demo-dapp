@@ -5,7 +5,7 @@ import ReactJson from 'react-json-view';
 import { useRecoilValueLoadable } from 'recoil';
 import { connector, sendTransaction } from 'src/connector';
 import { useTonWallet } from 'src/hooks/useTonWallet';
-import { callToBase64, generateContractAddress, generateInitialData } from 'src/nft-transaction';
+import { getAddressAndStateInit } from 'src/nft-transaction';
 import { walletsListQuery } from 'src/state/wallets-list';
 import './style.scss';
 
@@ -18,17 +18,15 @@ export function TxForm() {
 
 	useEffect(() => {
 		if (wallet) {
-			const data = generateInitialData(connector.wallet!.account.address);
-			const contractAddress = generateContractAddress(data);
-			const dataString = callToBase64(data);
+			const { address, initState } = getAddressAndStateInit(connector.wallet!.account.address);
 
 			setTx(() => ({
 				valid_until: Date.now() + 1000000,
 				messages: [
 					{
-						address: contractAddress,
+						address,
 						amount: '200000000',
-						initState: dataString,
+						initState,
 					},
 					{
 						address: '0:E69F10CC84877ABF539F83F879291E5CA169451BA7BCE91A37A5CED3AB8080D3',
