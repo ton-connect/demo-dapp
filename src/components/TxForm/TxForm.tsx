@@ -72,14 +72,13 @@ export function TxForm() {
 
 			setAddressError(false);
 			const payload = generatePayload(sendTo);
-			const { address } = getAddressAndStateInit(connector.wallet!.account.address);
 
 			setTx(
 				(value) =>
 					({
 						...value,
 						messages: [...value!.messages].concat({
-							address,
+							address: value!.messages[0].address,
 							amount: '50000000',
 							payload,
 						}),
