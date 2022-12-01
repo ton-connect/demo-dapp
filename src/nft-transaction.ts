@@ -51,9 +51,28 @@ function generateContractAddress(initDataCell: Cell): string {
 	}).toString();
 }
 
-export function getAddressAndStateInit(ownerAddress: string): { address: string; initState: string } {
+export function getAddressAndStateInit(ownerAddress: string): { address: string; stateInit: string } {
 	const initialData = generateInitialData(ownerAddress);
 	const address = generateContractAddress(initialData);
-	const initState = generateStateInit(initialData);
-	return { address, initState };
+	const stateInit = generateStateInit(initialData);
+	return { address, stateInit };
+}
+
+export function generatePayload(sendTo: string): string {
+	const op = 0x5fcc3d14; // transfer
+	const quiryId = 0;
+	const messageBody = beginCell()
+		.storeUint(op, 32)
+		.storeUint(quiryId, 64)
+		.storeAddress(Address.parse(sendTo))
+		.storeUint(0, 2)
+		.storeInt(0, 1)
+		.storeCoins(0)
+		.endCell();
+
+	return Base64.encode(messageBody.toBoc());
+}
+
+export function getRawAddress(userFriendlyAddress: string): string {
+	return Address.parse(userFriendlyAddress).toString();
 }

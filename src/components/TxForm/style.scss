@@ -8,7 +8,26 @@
   h3.ant-typography {
     color: white;
     opacity: 0.8;
+    margin-bottom: 10px !important;;
   }
+
+  h4.ant-typography {
+    color: white;
+    opacity: 0.8;
+    margin-top: 0 !important;
+  }
+
+  &__error {
+    color: rgba(102,170,238,0.91);
+    font-size: 18px;
+    line-height: 20px;
+  }
+}
+
+.send-tx-wrapper {
+  color: white;
+  display: flex;
+  flex-direction: column;
 
   > div:nth-child(2) {
     width: 100%;
@@ -18,9 +37,23 @@
     }
   }
 
-  &__error {
-    color: rgba(102,170,238,0.91);
-    font-size: 18px;
-    line-height: 20px;
+  > *:nth-child(3) {
+    margin: 10px auto;
+  }
+
+}
+
+.send-tx-input-wrapper {
+  width: 350px;
+  margin-bottom: 8px;
+}
+
+
+.send-tx-input-wrapper-error {
+  color: red;
+  visibility: hidden;
+
+  &_show {
+    visibility: visible;
   }
 }
