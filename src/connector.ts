@@ -2,9 +2,7 @@ import { SendTransactionRequest, TonConnect, UserRejectsError, WalletInfo } from
 import { notification } from 'antd';
 import { isMobile } from 'src/utils';
 
-// Just to fix Githab pages url problem.
-// If your app main route is hte same as `window.location.origin` you don't have to pass this argument to the TonConnect constructor
-const dappMetadata = { dappMetedata: { url: 'https://ton-connect.github.io/demo-dapp/' } };
+const dappMetadata = { manifestUrl: 'https://ton-connect.github.io/demo-dapp/tonconnect-manifest.json' };
 
 export const connector = new TonConnect(dappMetadata);
 
