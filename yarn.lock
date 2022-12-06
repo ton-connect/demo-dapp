@@ -1970,10 +1970,10 @@
   dependencies:
     tweetnacl-util "^0.15.1"
 
-"@tonconnect/sdk@^0.0.37":
-  version "0.0.37"
-  resolved "https://registry.yarnpkg.com/@tonconnect/sdk/-/sdk-0.0.37.tgz#96410bd363cdf28e9b2adaae48d55f9d5781bdd5"
-  integrity sha512-PwrrgjXKcFNChVnKbDqOJzkF5Tju1cum6/+DXFDWAZEREOEPhCajyOkSxxBc6l7V4IdXumUByHhYT5rgxmHpig==
+"@tonconnect/sdk@^0.0.38":
+  version "0.0.38"
+  resolved "https://registry.yarnpkg.com/@tonconnect/sdk/-/sdk-0.0.38.tgz#be6d0dc858cc40ba5336df21032711ee85563ef3"
+  integrity sha512-4Ge8GHyTj22KEP98is8VPOENMVaKsNOOxEfSbKWZT4Kdagc6GpDvpmgoeYp3G2KoItGzXKEqfacPHPxm62Ia0Q==
   dependencies:
     "@tonconnect/protocol" "^0.0.22"
     deepmerge "^4.2.2"
