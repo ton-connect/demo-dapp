@@ -9,7 +9,7 @@ import { useSlicedAddress } from 'src/hooks/useSlicedAddress';
 import { useTonWallet } from 'src/hooks/useTonWallet';
 import { useTonWalletConnectionError } from 'src/hooks/useTonWalletConnectionError';
 import { walletsListQuery } from 'src/state/wallets-list';
-import { isMobile } from 'src/utils';
+import { isMobile, openLink } from 'src/utils';
 import './style.scss';
 
 const menu = (
@@ -66,7 +66,7 @@ export function AuthButton() {
 		const universalLink = connector.connect(tonkeeperConnectionSource);
 
 		if (isMobile()) {
-			window.location.assign(universalLink);
+			openLink(universalLink, '_blank');
 		} else {
 			setModalUniversalLink(universalLink);
 		}
