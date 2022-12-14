@@ -54,7 +54,10 @@ export function AuthButton() {
 		}
 
 		if (walletsList.contents.embeddedWallet) {
-			connector.connect({ jsBridgeKey: walletsList.contents.embeddedWallet.jsBridgeKey });
+			connector.connect(
+				{ jsBridgeKey: walletsList.contents.embeddedWallet.jsBridgeKey },
+				{ return: (window as any).return_strategy || 'back' },
+			);
 			return;
 		}
 

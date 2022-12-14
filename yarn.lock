@@ -1970,12 +1970,19 @@
   dependencies:
     tweetnacl-util "^0.15.1"
 
-"@tonconnect/sdk@^0.0.42":
-  version "0.0.42"
-  resolved "https://registry.yarnpkg.com/@tonconnect/sdk/-/sdk-0.0.42.tgz#f67c544a6c3914560416165178561167fd9b9c03"
-  integrity sha512-vjd4CcM+OWOLn5N8Sx82iF1Hx5QHDhPsCOhlyiu9ulrNYY5ESOTfzHkb/kRgacS1oIqxm46XW5SIVz/034EhEw==
+"@tonconnect/protocol@^0.0.24":
+  version "0.0.24"
+  resolved "https://registry.yarnpkg.com/@tonconnect/protocol/-/protocol-0.0.24.tgz#a5d0d52f03618ef93154f573b6cbab127c64d164"
+  integrity sha512-0SSUTGRGbFik/Ag7YgOKA1bZFXOLB9w/wpLZaUMlK8PZx6ESKOkZNPv61/qSLcLaxLRODBt28c/znXICQPcuVw==
   dependencies:
-    "@tonconnect/protocol" "^0.0.22"
+    tweetnacl-util "^0.15.1"
+
+"@tonconnect/sdk@^0.0.43":
+  version "0.0.43"
+  resolved "https://registry.yarnpkg.com/@tonconnect/sdk/-/sdk-0.0.43.tgz#19c7a88b77fedc769c27f71ea6a889ef6850b694"
+  integrity sha512-oJi6YIZ2CxW8dPNq1A1r9xKbv0RsBm+Evi5e0JJb+R6SlrxnuZa33ByOlIt/zfy/ib/HgHe/YKXsk4ypcp/gsQ==
+  dependencies:
+    "@tonconnect/protocol" "^0.0.24"
     deepmerge "^4.2.2"
     eventsource "^2.0.2"
     node-fetch "^2.6.7"

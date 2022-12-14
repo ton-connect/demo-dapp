@@ -12,7 +12,7 @@ export async function sendTransaction(tx: SendTransactionRequest, wallet: Wallet
 			openLink(wallet.universalLink, '_blank');
 		}
 
-		const result = await connector.sendTransaction(tx);
+		const result = await connector.sendTransaction(tx, { return: (window as any).return_strategy || 'back' });
 		notification.success({
 			message: 'Successful transaction',
 			description:
