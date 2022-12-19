@@ -66,7 +66,9 @@ export function AuthButton() {
 			bridgeUrl: walletsList.contents.walletsList[0].bridgeUrl,
 		};
 
-		const universalLink = connector.connect(tonkeeperConnectionSource);
+		const universalLink = connector.connect(tonkeeperConnectionSource, {
+			return: (window as any).return_strategy || 'back',
+		});
 
 		if (isMobile()) {
 			openLink(universalLink, '_blank');

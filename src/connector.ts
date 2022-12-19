@@ -8,7 +8,7 @@ export const connector = new TonConnect(dappMetadata);
 
 export async function sendTransaction(tx: SendTransactionRequest, wallet: WalletInfo): Promise<{ boc: string }> {
 	try {
-		if ('universalLink' in wallet && isMobile()) {
+		if ('universalLink' in wallet && 'embedded' in wallet && wallet.embedded && isMobile()) {
 			openLink(wallet.universalLink, '_blank');
 		}
 
