@@ -1,4 +1,4 @@
-import { SendTransactionRequest, TonConnect, UserRejectsError, WalletInfo } from '@tonconnect/sdk';
+import { SendTransactionRequest, TonConnect, UserRejectsError, WalletInfo, WalletInfoInjected } from '@tonconnect/sdk';
 import { notification } from 'antd';
 import { isMobile, openLink } from 'src/utils';
 
@@ -8,7 +8,7 @@ export const connector = new TonConnect(dappMetadata);
 
 export async function sendTransaction(tx: SendTransactionRequest, wallet: WalletInfo): Promise<{ boc: string }> {
 	try {
-		if ('universalLink' in wallet && 'embedded' in wallet && wallet.embedded && isMobile()) {
+		if ('universalLink' in wallet && !(wallet as WalletInfoInjected).embedded && isMobile()) {
 			openLink(wallet.universalLink, '_blank');
 		}
 
