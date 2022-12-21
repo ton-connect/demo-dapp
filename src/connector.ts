@@ -9,10 +9,10 @@ export const connector = new TonConnect(dappMetadata);
 export async function sendTransaction(tx: SendTransactionRequest, wallet: WalletInfo): Promise<{ boc: string }> {
 	try {
 		if ('universalLink' in wallet && !(wallet as WalletInfoInjected).embedded && isMobile()) {
-			openLink(wallet.universalLink, '_blank');
+			openLink(addReturnStrategy(wallet.universalLink, 'none'), '_blank');
 		}
 
-		const result = await connector.sendTransaction(tx, { return: (window as any).return_strategy || 'back' });
+		const result = await connector.sendTransaction(tx);
 		notification.success({
 			message: 'Successful transaction',
 			description:
@@ -37,4 +37,10 @@ export async function sendTransaction(tx: SendTransactionRequest, wallet: Wallet
 		console.log(e);
 		throw e;
 	}
+}
+
+export function addReturnStrategy(url: string, returnStrategy: 'back' | 'none'): string {
+	const link = new URL(url);
+	link.searchParams.append('ret', returnStrategy);
+	return link.toString();
 }

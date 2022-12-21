@@ -3,7 +3,7 @@ import { Button, Dropdown, Menu, Modal, notification, Space } from 'antd';
 import React, { useCallback, useEffect, useState } from 'react';
 import QRCode from 'react-qr-code';
 import { useRecoilValueLoadable } from 'recoil';
-import { connector } from 'src/connector';
+import { addReturnStrategy, connector } from 'src/connector';
 import { useForceUpdate } from 'src/hooks/useForceUpdate';
 import { useSlicedAddress } from 'src/hooks/useSlicedAddress';
 import { useTonWallet } from 'src/hooks/useTonWallet';
@@ -54,10 +54,7 @@ export function AuthButton() {
 		}
 
 		if (walletsList.contents.embeddedWallet) {
-			connector.connect(
-				{ jsBridgeKey: walletsList.contents.embeddedWallet.jsBridgeKey },
-				{ return: (window as any).return_strategy || 'back' },
-			);
+			connector.connect({ jsBridgeKey: walletsList.contents.embeddedWallet.jsBridgeKey });
 			return;
 		}
 
@@ -66,12 +63,10 @@ export function AuthButton() {
 			bridgeUrl: walletsList.contents.walletsList[0].bridgeUrl,
 		};
 
-		const universalLink = connector.connect(tonkeeperConnectionSource, {
-			return: (window as any).return_strategy || 'back',
-		});
+		const universalLink = connector.connect(tonkeeperConnectionSource);
 
 		if (isMobile()) {
-			openLink(universalLink, '_blank');
+			openLink(addReturnStrategy(universalLink, 'none'), '_blank');
 		} else {
 			setModalUniversalLink(universalLink);
 		}
