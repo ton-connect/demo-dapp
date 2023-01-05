@@ -9,7 +9,7 @@ import { useSlicedAddress } from 'src/hooks/useSlicedAddress';
 import { useTonWallet } from 'src/hooks/useTonWallet';
 import { useTonWalletConnectionError } from 'src/hooks/useTonWalletConnectionError';
 import { walletsListQuery } from 'src/state/wallets-list';
-import { isMobile, openLink } from 'src/utils';
+import { isDesktop, isMobile, openLink } from 'src/utils';
 import './style.scss';
 
 const menu = (
@@ -53,7 +53,7 @@ export function AuthButton() {
 			setTimeout(handleButtonClick, 200);
 		}
 
-		if (walletsList.contents.embeddedWallet) {
+		if (!isDesktop() && walletsList.contents.embeddedWallet) {
 			connector.connect({ jsBridgeKey: walletsList.contents.embeddedWallet.jsBridgeKey });
 			return;
 		}

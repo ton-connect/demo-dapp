@@ -10,7 +10,7 @@
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
     "@tonconnect/protocol": "^2.0.0",
-    "@tonconnect/sdk": "^2.0.1",
+    "@tonconnect/sdk": "^2.0.5",
     "@types/jest": "^27.0.1",
     "@types/node": "^16.7.13",
     "@types/react": "^18.0.0",
