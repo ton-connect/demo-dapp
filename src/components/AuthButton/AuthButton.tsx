@@ -39,7 +39,7 @@ export function AuthButton() {
 
 	const walletsList = useRecoilValueLoadable(walletsListQuery);
 
-	const address = useSlicedAddress(wallet?.account.address);
+	const address = useSlicedAddress(wallet?.account.address, wallet?.account.chain);
 
 	useEffect(() => {
 		if (modalUniversalLink && wallet) {
